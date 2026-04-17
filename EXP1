@@ -1,0 +1,60 @@
+ORG 0000H
+MOV A,50H
+MOV B,51H
+BACK:MOV R1,B
+DIV AB
+MOV A,B
+JZ LAST
+MOV A,R1
+SJMP BACK
+LAST:MOV A,R1
+MOV 52H,A
+MOV A,50H
+MOV B,52H
+DIV AB
+MOV B,51H
+MUL AB
+MOV 53H,B
+MOV 54H,A
+END
+
+
+
+PROCESS
+DEBUG
+VIEW---MEMORY WINDOW---MEMORY----50H
+ENTER 15 AND 45
+15 45 03 01 E3
+
+
+CALCUALTIONS
+10 calculation →
+
+Hexa decimal digits as 15 & 45
+
+(15)H = (1 × 16^1) + (5 × 16^0)
+       = 16 + 5 = 21
+       = (21)10
+
+Second Byte:
+(45)H = (4 × 16^1) + (5 × 16^0)
+       = 64 + 5 = 69
+       = (69)10
+
+GCD of (15,45)
+
+69 ÷ 21 = 3 remainder 6
+21 ÷ 6 = 3 remainder 3
+6 ÷ 3 = 2 remainder 0
+
+∴ GCD = 03H
+
+LCM of (15,45)
+
+LCM = a × b / GCD
+    = 21 × 69 / 3 = 483
+
+Convert 483 into hexadecimal
+
+483 ÷ 16 = 30 remainder 3
+(483)10 = (01E3)H
